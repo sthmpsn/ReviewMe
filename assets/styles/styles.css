@@ -1,0 +1,16 @@
+/* debug help */
+.col{
+    border: 1px dashed red;
+
+}
+
+
+
+.container{
+    min-width: 573px;
+}
+
+#row-header {
+    height: 150px;
+
+}
