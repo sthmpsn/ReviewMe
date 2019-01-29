@@ -4,6 +4,8 @@
 
 }
 
+
+
  /* END OF DEBUG  (DELETE WHEN "GO LIVE") */
 
 
@@ -31,3 +33,6 @@
     font-weight: bold;
 }
 
+#welcome-msg {
+    background-color: #1D8B9C;
+}
