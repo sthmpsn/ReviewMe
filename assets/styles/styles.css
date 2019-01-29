@@ -1,7 +1,10 @@
 /* Styles that affect classes */
+body {
+    background-image: url("../images/concrete-texture.png");
+}
+
 .container{
     min-width: 573px;
-    height: 100vp;
 }
 
 .header-imgs {
@@ -15,13 +18,18 @@
     margin: 15px 0;
 }
 
+.category-items{
+    background-color: #3BBB8A;
+    margin: 3px 0;
+    padding: 15px;
+    box-shadow: 2px 2px 1px grey;
+
+}
 
 /* Styles that affect individual element IDs */
 #row-header {
     height: 150px;
     border-bottom: 5px solid #4BE0A7 !important;
-
-
 }
 
 #header-brand {
@@ -29,14 +37,23 @@
     font-weight: bold;
 }
 
+#row-content{
+    height: 100vh;
+ }
+
 #welcome-msg {
     background-color: #1D8B9C;
+    box-shadow: 10px 10px 5px grey;
 }
 
 #bttn-createReview {
     background-color:#19FFA7;
+    box-shadow: 2px 2px 1px grey;
 }
+
 
 #row-footer {
     background-color: #3BBB8A;
+    box-shadow: 0 -2px 8px 3px grey;
+
 }
