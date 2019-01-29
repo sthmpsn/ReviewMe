@@ -1,0 +1,39 @@
+Logic/On-click events
+
+Log in form
+//form has username input field
+//on-click submit button of the form:
+   
+//if username is in database {
+       
+    //login/go-to my references page (will call function loadpage)
+    
+//else database.ref().set(){
+       
+    //  user: username
+    
+    //avatar?
+    
+    //other personal settings?
+        
+    })
+//loadpage of login :
+//database.ref().on("child_added", function(childsnapshot) {
+    
+    //childsnapshot.val().preferences (turn this into an object/array)
+    //for each preference {
+    
+    //create a div and use childsnapshot to populate div with preference information
+    }
+$(#button-add-new-preference).on("click", function() {
+    
+//either pull up form, submit on form that is on the same page as the already-populated preferences, or dynamically modify html
+    
+//enter in preference name, description, rating, rating comments
+    
+//pull in image using image api based on preference name (
+    
+//if preference = type restaurant/location
+        //maps api query
+});
+    
