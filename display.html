@@ -12,50 +12,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
     <title>MyReviews</title>
 </head>
-<style>
-/* Styles that affect classes */
-.container{
-    min-width: 573px;
-    height: 100vp;
-}
 
-.header-imgs {
-    height: 75px;
-    width: 75px;
-}
-
-.footer-imgs {
-    height: 75px;
-    width: 75px;
-    margin: 15px 0;
-}
-
-
-/* Styles that affect individual element IDs */
-#row-header {
-    height: 150px;
-    border-bottom: 5px solid #4BE0A7 !important;
-
-
-}
-
-#header-brand {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-#welcome-msg {
-    background-color: #1D8B9C;
-}
-
-#bttn-createReview {
-    background-color:#19FFA7;
-}
-
-#row-footer {
-    background-color: #3BBB8A;
-}
-</style>
 <body class="bg-light">
     <div class="container container-fluid border">
         <div id="row-header" class="row pl-3 bg-white border border-muted align-items-center">
@@ -79,9 +36,11 @@
             </div>
         </div>
         <div id="row-content" class="row">
+
             <div id="review-categories" class="col col-12 col-md-3 px-0">
                 <button id="bttn-createReview" class="w-100 py-3 m-0 h3">Create Review</button>
             </div>
+
             <div id="review-content" class="col col-12 col-md-9">
                 <div id="welcome-msg" class="mx-auto my-5 p-5 w-75 rounded text-center alert-info text-white">
                     <p class="h3 mb-3">Welcome to MyReviews!!</p>
@@ -89,6 +48,7 @@
                 </div>
             </div>
         </div>
+
         <div id="row-footer" class="row">
             <div id="footer-left" class="col-3 footer text-center text-white">
                 <img id="imgSkull" class="footer-imgs" src="assets/images/skull.png" alt="Skull">
@@ -107,5 +67,31 @@
         crossorigin="anonymous"></script>
     <script src="assets/javascript/javascript.js"></script>
 </body>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCYMFkr7RuA6LabcsxJulA93r57UpIHFMw",
+    authDomain: "exceptional-pirates.firebaseapp.com",
+    databaseURL: "https://exceptional-pirates.firebaseio.com",
+    projectId: "exceptional-pirates",
+    storageBucket: "exceptional-pirates.appspot.com",
+    messagingSenderId: "756087661991"
+  };
+
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  var username;
+  var star;
+  var avatar;
+  var review;
+  var place;
+  
+
+</script>
+
 
 </html>
