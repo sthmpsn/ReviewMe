@@ -1,7 +1,7 @@
 /* debug help */
 
 .col {
-    border: 1px dashed red;
+    /* border: 1px dashed red; */
 }
 
 
@@ -64,7 +64,6 @@ body {
     height: 150px;
     width: 150px;
 }
-
 
 #row-footer {
     background-color: #3BBB8A;

@@ -51,14 +51,40 @@
                     <form>
                         <div class="row">
                             <div class="col">
-                                <img id="review-img" class="ml-5" src="assets/images/avatars/avatar-placeholder.png" alt="Review Item Name">
+                                <div class="row justify-content-center">
+                                <img id="review-img" class="mb-2" src="assets/images/avatars/avatar-placeholder.png" alt="Review Item Name">
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-auto col">
+                                        <input id="review-name" type="text" class="form-control-lg text-center mb-3" placeholder="Review Name Here">
+                                    </div>
+                                </div>
+                                <div id="review-rating" class="row justify-content-center">
+                                        <div class="col-auto col mb-5">
+                                            REVIEW STAR RATING HERE
+                                        </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                        <div id="review-map" class="col-auto col border p-5">
+                                            GOOGLE MAP API STUFF HERE
+                                        </div>
+                                </div>
+
+
                             </div>
                             <div class="col">
-                                <select id="review-categories-select" class="form-control-lg mr-5 mt-5">
-                                    <option selected>Choose Category...</option>
-                                    <option value="Beer">Beer</option>
-                                    <option value="Restaurant">Restaurant</option>
-                                </select>
+                                <div class="row justify-content-center">
+                                    <select id="review-categories-select" class="form-control-lg mt-2 mt-md-4 mb-5">
+                                        <option selected>Choose Category...</option>
+                                        <option value="Beer">Beer</option>
+                                        <option value="Restaurant">Restaurant</option>
+                                    </select>
+                                </div>
+                                <div id="review-comments" class="row justify-content-center border p-5 mr-2">
+                                    COMMENTS STUFF HERE
+                                </div>
+
+
                             </div>
                         </div>
                     </form>
