@@ -1,3 +1,10 @@
+/* debug help */
+
+.col {
+    border: 1px dashed red;
+}
+
+
 /* Styles that affect classes */
 body {
     background-image: url("../images/concrete-texture.png");
@@ -23,7 +30,10 @@ body {
     margin: 3px 0;
     padding: 15px;
     box-shadow: 2px 2px 1px grey;
+}
 
+.shadow-default {
+    box-shadow: 10px 10px 5px grey;
 }
 
 /* Styles that affect individual element IDs */
@@ -43,12 +53,16 @@ body {
 
 #welcome-msg {
     background-color: #1D8B9C;
-    box-shadow: 10px 10px 5px grey;
 }
 
 #bttn-createReview {
     background-color:#19FFA7;
     box-shadow: 2px 2px 1px grey;
+}
+
+#review-img {
+    height: 150px;
+    width: 150px;
 }
 
 
