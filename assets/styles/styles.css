@@ -54,6 +54,12 @@ input:-webkit-autofill {
     background-color: #3BBB8A;
 }
 
+.col-form-left > .form-group {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
 /* Styles that affect individual element IDs */
 #row-header {
     height: 150px;

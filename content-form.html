@@ -48,51 +48,56 @@
             </div>
             <div id="review-content" class="col col-12 col-md-9 col-content">
                 <div id="row-form" class="row">
-                    <div id="col-form" class="col px-md-5 py-md-5">
+                    <div id="col-form" class="col p-0 px-md-5 py-md-5">
                         <div class="card">
                             <div class="card-header text-white h5">
                                 Review Details
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <img id="review-img" class="mb-2" src="assets/images/avatars/avatar-placeholder.png"
-                                        alt="Review Item Name">
-                                </div>
-                                <div class="form-group">
-                                    <input id="review-name" type="text" class="form-control-lg mb-3" placeholder="Review Name Here">
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-auto col mb-4 star-ratings">
-                                        <span id="rating1" class="fa fa-star" rating="1"></span>
-                                        <span id="rating2" class="fa fa-star" rating="2"></span>
-                                        <span id="rating3" class="fa fa-star" rating="3"></span>
-                                        <span id="rating4" class="fa fa-star" rating="4"></span>
-                                        <span id="rating5" class="fa fa-star" rating="5"></span>
+                                <div class="row">
+                                    <div class="col-5 col-form-left p-0">
+                                        <div class="form-group m-0">
+                                            <img id="review-img" src="assets/images/avatars/avatar-placeholder.png" alt="Review Item Name">
+                                        </div>
+                                        <div class="form-group m-0">
+                                            <input id="review-name" type="text" class="h5 text-center w-100 py-0 py-md-2" maxlength="30"
+                                                placeholder="Review Name Here">
+                                        </div>
+                                        <div class="form-group m-0">
+                                            <div class="col-auto col mb-4 star-ratings">
+                                                <span id="rating1" class="fa fa-star" rating="1"></span>
+                                                <span id="rating2" class="fa fa-star" rating="2"></span>
+                                                <span id="rating3" class="fa fa-star" rating="3"></span>
+                                                <span id="rating4" class="fa fa-star" rating="4"></span>
+                                                <span id="rating5" class="fa fa-star" rating="5"></span>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="col-7 p-0 pr-3">
+                                        <div class="form-group">
+                                            <div id="review-Category">
+                                                <label for="reviewCategory" class="font-weight-bold mr-3">Category</label>
+                                                <select id="review-categories-select" class="form-control-lg bg-white px-md-4">
+                                                    <option selected>Choose Category...</option>
+                                                    <option value="Beer">Beer</option>
+                                                    <option value="Restaurant">Restaurant</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div id="review-comments">
+                                                <label for="reviewComments" class="font-weight-bold">Comments</label>
+                                                <textarea class="form-control" id="reviewComments" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>  
                                 </div>
-                                <div class="form-group">
-                                    <div id="review-Category" class="my-2 mb-md-4 mt-md-4 mx-3">
-                                        <!-- <label for="reviewCategory" class="font-weight-bold">Category</label> -->
-                                        <select id="review-categories-select" class="form-control-lg bg-white">
-                                            <option selected>Choose Category...</option>
-                                            <option value="Beer">Beer</option>
-                                            <option value="Restaurant">Restaurant</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div id="review-comments">
-                                        <label for="reviewComments" class="font-weight-bold">Comments</label>
-                                        <textarea class="form-control" id="reviewComments" rows="5"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
+                                <div class="form-group mt-3">
                                     <div id="review-map" class="col-12 col p-5 border">
                                         GOOGLE MAP API STUFF HERE
                                     </div>
                                 </div>
                                 <button id="review-bttnSave" class="btn mt-3 px-3 float-right text-white"><span class="h6">Close</span></button>
-                            </div>
                         </div>
                     </div>
                 </div>
