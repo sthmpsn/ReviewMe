@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
     <title>MyReviews</title>
@@ -59,9 +60,13 @@
                                         <input id="review-name" type="text" class="form-control-lg text-center mb-3" placeholder="Review Name Here">
                                     </div>
                                 </div>
-                                <div id="review-rating" class="row justify-content-center">
-                                        <div class="col-auto col mb-5">
-                                            REVIEW STAR RATING HERE
+                                <div class="row justify-content-center">
+                                        <div class="col-auto col mb-4 star-ratings">
+                                            <span id="rating1" class="fa fa-star" rating="1"></span>
+                                            <span id="rating2"class="fa fa-star" rating="2"></span>
+                                            <span id="rating3"class="fa fa-star" rating="3"></span>
+                                            <span id="rating4" class="fa fa-star" rating="4"></span>
+                                            <span id="rating5" class="fa fa-star" rating="5"></span>
                                         </div>
                                 </div>
                                 <div class="row justify-content-center">
@@ -73,17 +78,19 @@
 
                             </div>
                             <div class="col">
-                                <div class="row justify-content-center">
-                                    <select id="review-categories-select" class="form-control-lg mt-2 mt-md-4 mb-5">
+                                <div id="review-Category">
+                                    <label for="reviewCategory">Category</label>
+                                    <select id="review-categories-select" class="form-control-lg mt-2 mt-md-4 mb-5 mx-3">
                                         <option selected>Choose Category...</option>
                                         <option value="Beer">Beer</option>
                                         <option value="Restaurant">Restaurant</option>
                                     </select>
                                 </div>
-                                <div id="review-comments" class="row justify-content-center border p-5 mr-2">
-                                    COMMENTS STUFF HERE
+                                <div id="review-comments">
+                                    <label for="reviewComments">Comments</label>
+                                    <textarea class="form-control" id="reviewComments" rows="10"></textarea>
                                 </div>
-
+                                <button id="review-bttnSave" class="btn btn-primary mt-3 float-right">Close</button>
 
                             </div>
                         </div>

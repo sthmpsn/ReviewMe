@@ -4,6 +4,8 @@
     /* border: 1px dashed red; */
 }
 
+/* End Debug */
+
 
 /* Styles that affect classes */
 body {
@@ -65,8 +67,18 @@ body {
     width: 150px;
 }
 
+#review-name{
+    border: none;
+}
+
 #row-footer {
     background-color: #3BBB8A;
     box-shadow: 0 -2px 8px 3px grey;
 
+}
+
+
+/* STAR RATING RELATED */
+.checked {
+    color: gold;
 }
