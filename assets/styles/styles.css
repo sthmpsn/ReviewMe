@@ -1,7 +1,7 @@
 /* debug help */
 
 .col {
-    /* border: 1px dashed red; */
+    border: 1px dashed red;
 }
 
 
@@ -9,18 +9,18 @@
 
 
 /* Styles that affect classes */
-html {
-    position: relative;
-    min-height: 100vh;
-}
-
 body {
     background-image: url("../images/concrete-texture.png");
+    height: 100%;
 }
 
 input:-webkit-autofill {
     /* Avoid Chrome's autofill from turning the background yellow by using box-shadow  */
     -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.card-body > button { 
+    background-color:#3BBB8A;
 }
 
 
@@ -50,6 +50,10 @@ input:-webkit-autofill {
     box-shadow: 10px 10px 5px grey;
 }
 
+.card-header {
+    background-color: #3BBB8A;
+}
+
 /* Styles that affect individual element IDs */
 #row-header {
     height: 150px;
@@ -60,10 +64,6 @@ input:-webkit-autofill {
     font-size: 1.5em;
     font-weight: bold;
 }
-
-#row-content{
-    height: 100vh;
- }
 
 #welcome-msg {
     background-color: #1D8B9C;
