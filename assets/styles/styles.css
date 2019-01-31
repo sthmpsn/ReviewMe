@@ -9,6 +9,11 @@
 
 
 /* Styles that affect classes */
+html {
+    position: relative;
+    min-height: 100vh;
+}
+
 body {
     background-image: url("../images/concrete-texture.png");
 }
@@ -81,7 +86,6 @@ input:-webkit-autofill {
 #row-footer {
     background-color: #3BBB8A;
     box-shadow: 0 -2px 8px 3px grey;
-
 }
 
 
