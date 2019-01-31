@@ -49,52 +49,49 @@
 
             <div id="review-content" class="col col-12 col-md-9 col-content">
                 <div id="review-content-item" class="m-4 p-3 bg-white border shadow-default">
-                    <form>
-                        <div class="row">
-                            <div class="col">
-                                <div class="row justify-content-center">
-                                <img id="review-img" class="mb-2" src="assets/images/avatars/avatar-placeholder.png" alt="Review Item Name">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row justify-content-center">
+                            <img id="review-img" class="mb-2" src="assets/images/avatars/avatar-placeholder.png" alt="Review Item Name">
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-auto col">
+                                    <input id="review-name" type="text" class="form-control-lg text-center mb-3" placeholder="Review Name Here">
                                 </div>
-                                <div class="row justify-content-center">
-                                    <div class="col-auto col">
-                                        <input id="review-name" type="text" class="form-control-lg text-center mb-3" placeholder="Review Name Here">
+                            </div>
+                            <div class="row justify-content-center">
+                                    <div class="col-auto col mb-4 star-ratings">
+                                        <span id="rating1" class="fa fa-star" rating="1"></span>
+                                        <span id="rating2"class="fa fa-star" rating="2"></span>
+                                        <span id="rating3"class="fa fa-star" rating="3"></span>
+                                        <span id="rating4" class="fa fa-star" rating="4"></span>
+                                        <span id="rating5" class="fa fa-star" rating="5"></span>
                                     </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                        <div class="col-auto col mb-4 star-ratings">
-                                            <span id="rating1" class="fa fa-star" rating="1"></span>
-                                            <span id="rating2"class="fa fa-star" rating="2"></span>
-                                            <span id="rating3"class="fa fa-star" rating="3"></span>
-                                            <span id="rating4" class="fa fa-star" rating="4"></span>
-                                            <span id="rating5" class="fa fa-star" rating="5"></span>
-                                        </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                        <div id="review-map" class="col-auto col border p-5">
-                                            GOOGLE MAP API STUFF HERE
-                                        </div>
-                                </div>
-
-
                             </div>
-                            <div class="col">
-                                <div id="review-Category">
-                                    <label for="reviewCategory">Category</label>
-                                    <select id="review-categories-select" class="form-control-lg mt-2 mt-md-4 mb-5 mx-3">
-                                        <option selected>Choose Category...</option>
-                                        <option value="Beer">Beer</option>
-                                        <option value="Restaurant">Restaurant</option>
-                                    </select>
-                                </div>
-                                <div id="review-comments">
-                                    <label for="reviewComments">Comments</label>
-                                    <textarea class="form-control" id="reviewComments" rows="10"></textarea>
-                                </div>
-                                <button id="review-bttnSave" class="btn btn-primary mt-3 float-right">Close</button>
-
+                            <div class="row justify-content-center">
+                                    <div id="review-map" class="col-auto col border p-5">
+                                        GOOGLE MAP API STUFF HERE
+                                    </div>
                             </div>
+
+
                         </div>
-                    </form>
+                        <div class="col">
+                            <div id="review-Category">
+                                <label for="reviewCategory" class="font-weight-bold">Category</label>
+                                <select id="review-categories-select" class="form-control-lg mt-2 mt-md-4 mb-5 mx-3 bg-white">
+                                    <option selected>Choose Category...</option>
+                                    <option value="Beer">Beer</option>
+                                    <option value="Restaurant">Restaurant</option>
+                                </select>
+                            </div>
+                            <div id="review-comments">
+                                <label for="reviewComments" class="font-weight-bold">Comments</label>
+                                <textarea class="form-control" id="reviewComments" rows="10"></textarea>
+                            </div>
+                            <button id="review-bttnSave" class="btn btn-success mt-3 float-right">Close</button>
+                        </div>
+                    </div>
                 </div> 
             </div>
 

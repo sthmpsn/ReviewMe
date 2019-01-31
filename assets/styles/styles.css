@@ -4,6 +4,7 @@
     /* border: 1px dashed red; */
 }
 
+
 /* End Debug */
 
 
@@ -11,6 +12,12 @@
 body {
     background-image: url("../images/concrete-texture.png");
 }
+
+input:-webkit-autofill {
+    /* Avoid Chrome's autofill from turning the background yellow by using box-shadow  */
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
 
 .container{
     min-width: 573px;
