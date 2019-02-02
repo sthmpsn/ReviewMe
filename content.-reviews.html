@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <title>MyReviews</title>
+</head>
+
+<body>
+    <header class="container container-fluid border">
+        <div id="row-header" class="row pl-3 bg-white border align-items-center">
+            <div id="header-logo" class="col-2 col-md-2 text-center">
+                <img id="imgLogo" class="header-imgs" src="assets/images/logo.png" alt="logo MyReviews">
+            </div>
+            <div id="header-brand" class="col-4 col-md-3 pl-0">
+                MyReviews
+            </div>
+            <div id="header-userInfo" class="col-4 col-md-7 pr-md-5">
+                <div id="row-avatar" class="row">
+                    <div id="avatar" class="col text-right pr-md-4 ">
+                        <img id="imgAvatar" class="header-imgs" src="assets/images/avatars/avatar-placeholder.png" alt="Avatar">
+                    </div>
+                </div>
+                <div id="row-username" class="row">
+                    <div id="username" class="col text-right pr-md-1">
+                        <a href="index.html">not &lt;username&gt;?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+        <main class="container bg-light">
+            <div id="row-content" class="row">
+                <div id="review-categories" class="col col-12 col-md-3 col-content px-0">
+                    <button id="bttn-createReview" class="w-100 py-3 m-0 h3">Create Review</button>
+                    <div id="cat-beer" class="category-items w-100 h3 text-white">
+                        Beer
+                    </div>
+                    <div id="cat-restaurants" class="category-items w-100 h3 text-white">
+                        Restaurants
+                    </div>
+                </div>
+                <div id="review-content" class="col col-12 col-md-9 col-content">
+                    <!-- REVIEW POPULATION HERE -->
+                    <div id="review-id" class="review-summaries border border-dark rounded float-left">
+                        <!-- review.name -->
+                        Shinerbock
+                        <!-- review.rating -->
+                        <div class="form-group static-rating m-0">
+                            <div class="col-auto col mb-4 star-ratings-static">
+                                <span id="rating1" class="fa fa-star" rating="1"></span>
+                                <span id="rating2" class="fa fa-star" rating="2"></span>
+                                <span id="rating3" class="fa fa-star" rating="3"></span>
+                                <span id="rating4" class="fa fa-star" rating="4"></span>
+                                <span id="rating5" class="fa fa-star" rating="5"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    </main>
+    <footer class="container">
+        <div id="row-footer" class="row">
+            <div id="footer-left" class="col-3 footer text-center text-white">
+                <img id="imgSkull" class="footer-imgs" src="assets/images/skull.png" alt="Skull">
+            </div>
+            <div id="footer-center" class="col footer pb-2 text-center text-white align-self-end">
+                Copyright © 2019 Exceptional Pirates Inc
+            </div>
+            <div id="footer-right" class="col-3 footer text-center text-white">
+                <img id="imgShip" class="footer-imgs" src="assets/images/flag.gif" alt="flag">
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="assets/javascript/javascript.js"></script>
+</body>
+
+</html>
