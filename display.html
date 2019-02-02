@@ -36,25 +36,25 @@
             </div>
         </div>
         <div id="row-content" class="row">
-
             <div id="review-categories" class="col col-12 col-md-3 px-0">
                 <button id="bttn-createReview" class="w-100 py-3 m-0 h3">Create Review</button>
+                <button id="beer" class="category-items w-100 h3 text-white">
+                    Beer
+                </button>
+                <button id="restaurants" class="category-items w-100 h3 text-white">
+                    Restaurants
+                </button>
             </div>
-
             <div id="review-content" class="col col-12 col-md-9">
-                <div id="welcome-msg" class="mx-auto my-5 p-5 w-75 rounded text-center alert-info text-white">
-                    <p class="h3 mb-3">Welcome to MyReviews!!</p>
-                    <p class="h6">To get started with your first review, click the "Create Review" button</p>
-                </div>
+
             </div>
         </div>
-
         <div id="row-footer" class="row">
             <div id="footer-left" class="col-3 footer text-center text-white">
                 <img id="imgSkull" class="footer-imgs" src="assets/images/skull.png" alt="Skull">
             </div>
             <div id="footer-center" class="col footer text-center text-white align-self-end">
-                Copyright © 2019  Exceptional Pirates Inc
+                Copyright © 2019 Exceptional Pirates Inc
             </div>
             <div id="footer-right" class="col-3 footer text-center text-white">
                 <img id="imgShip" class="footer-imgs" src="assets/images/flag.gif" alt="flag">
@@ -67,31 +67,220 @@
         crossorigin="anonymous"></script>
     <script src="assets/javascript/javascript.js"></script>
 </body>
-
 <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCYMFkr7RuA6LabcsxJulA93r57UpIHFMw",
-    authDomain: "exceptional-pirates.firebaseapp.com",
-    databaseURL: "https://exceptional-pirates.firebaseio.com",
-    projectId: "exceptional-pirates",
-    storageBucket: "exceptional-pirates.appspot.com",
-    messagingSenderId: "756087661991"
-  };
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCYMFkr7RuA6LabcsxJulA93r57UpIHFMw",
+        authDomain: "exceptional-pirates.firebaseapp.com",
+        databaseURL: "https://exceptional-pirates.firebaseio.com",
+        projectId: "exceptional-pirates",
+        storageBucket: "exceptional-pirates.appspot.com",
+        messagingSenderId: "756087661991"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+    var username;
+    var review_rating;
+    var avatar;
+    var review;
+    var myPreferences = "";
+    var place;
 
-  firebase.initializeApp(config);
+    var users = {
+        person1: {
+            name: "Jim",
+            reviews: {
+                review1: {
+                    name: "Bush Lght",
+                    class: "beer",
+                    rating: "4.0"
+                }
+            }
+        },
+        person2: {
+            name: "Joe",
+            reviews: {
+                review1: {
+                    name: "Bud Light",
+                    class: "beer",
+                    rating: "4.0"
+                },
+                review2: {
+                    name: "Arby's",
+                    class: "restaurants",
+                    rating: "5.0"
+                },
+                review3: {
+                    name: "Wendy's",
+                    class: "restaurants",
+                    rating: "3.0"
+                }
+            }
+        }
+    }
 
-  var database = firebase.database();
 
-  var username;
-  var star;
-  var avatar;
-  var review;
-  var place;
-  
+    // $(".category-items").on("click", function () {
+    //     $("#review-content").empty();
+    //     var myPrefrences = users.person2.reviews;
+    //     console.log($(this).attr("id"));
+    //     for (key in myPrefrences) {
+    //         if (myPrefrences[key].class == $(this).attr("id")) {
+    //             console.log(myPrefrences[key].name);
+    //             console.log(myPrefrences[key].rating);
+    //             $("#review-content").append(`
+    //             <div id="review-id" class="review-summaries mx-md-3 my-md-3">
+    //                     <!-- review.name -->
+    //                     <h5>${myPrefrences[key].name}</h5>
+    //                     <!-- review.rating -->
+    //                     ${myPrefrences[key].rating}
+    //                     <div class="form-group static-rating m-0">
+    //                         <div class="col-auto col star-ratings-static">
+    //                             <span id="rating1" class="fa fa-star" rating="1"></span>
+    //                             <span id="rating2" class="fa fa-star" rating="2"></span>
+    //                             <span id="rating3" class="fa fa-star" rating="3"></span>
+    //                             <span id="rating4" class="fa fa-star" rating="4"></span>
+    //                             <span id="rating5" class="fa fa-star" rating="5"></span>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+
+    $("#restaurants").on("click", function () {
+        $("#review-content").empty();
+        database.ref().on("child_added", function (childSnapshot) {
+            myPreferences = childSnapshot.val().Jim.reviews;
+            for (key in myPreferences) {
+                console.log(myPreferences[key].class)
+                if (myPreferences[key].class == "restaurants") {
+                    //console.log(myPreferences[key].name);
+                    //console.log(myPreferences[key].rating);
+                    $("#review-content").append(`
+                <div id="review-id" class="review-summaries mx-md-3 my-md-3">
+                        <!-- review.name -->
+                        <h5>${myPreferences[key].name}</h5>
+                        <!-- review.rating -->
+                        ${myPreferences[key].rating}
+                        <div class="form-group static-rating m-0">
+                            <div class="col-auto col star-ratings-static">
+                                <span id="rating1" class="fa fa-star" rating="1"></span>
+                                <span id="rating2" class="fa fa-star" rating="2"></span>
+                                <span id="rating3" class="fa fa-star" rating="3"></span>
+                                <span id="rating4" class="fa fa-star" rating="4"></span>
+                                <span id="rating5" class="fa fa-star" rating="5"></span>
+                            </div>
+                        </div>
+                    </div>
+                    `);
+
+                }
+            }
+        });
+    });
+    
+    $("#beer").on("click", function () {
+        $("#review-content").empty();
+        database.ref().on("child_added", function (childSnapshot) {
+            myPreferences = childSnapshot.val().Jim.reviews;
+            for (key in myPreferences) {
+                if (myPreferences[key].class == "beer") {
+                    //console.log(myPreferences[key].name);
+                    //console.log(myPreferences[key].rating);
+                    $("#review-content").append(`
+                <div id="review-id" class="review-summaries mx-md-3 my-md-3">
+                        <!-- review.name -->
+                        <h5>${myPreferences[key].name}</h5>
+                        <!-- review.rating -->
+                        ${myPreferences[key].rating}
+                        <div class="form-group static-rating m-0">
+                            <div class="col-auto col star-ratings-static">
+                                <span id="rating1" class="fa fa-star" rating="1"></span>
+                                <span id="rating2" class="fa fa-star" rating="2"></span>
+                                <span id="rating3" class="fa fa-star" rating="3"></span>
+                                <span id="rating4" class="fa fa-star" rating="4"></span>
+                                <span id="rating5" class="fa fa-star" rating="5"></span>
+                            </div>
+                        </div>
+                    </div>
+                    `);
+
+                }
+            }
+        });
+    });
+    
+    
+    $(document).on("click",".review-summaries", function(){
+        console.log(myPreferences);
+        $("#review-content").empty();
+        $("#review-content").append(`<div id="row-form" class="row">
+    <div id="col-form" class="col p-0 px-md-5 py-md-5">
+        <div class="card">
+            <div class="card-header text-white h5">
+                Review Details
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-5 col-form-left p-0">
+                        <div class="form-group m-0">
+                            <img id="review-img" src="assets/images/avatars/avatar-placeholder.png" alt="Review Item Name">
+                        </div>
+                        <div class="form-group m-0">
+                            <div>${myPreferences[key].name}</div>
+                        </div>
+                        <div class="form-group m-0">
+                            <div class="col-auto col mb-4 star-ratings">
+                                <span id="rating1" class="fa fa-star" rating="1"></span>
+                                <span id="rating2" class="fa fa-star" rating="2"></span>
+                                <span id="rating3" class="fa fa-star" rating="3"></span>
+                                <span id="rating4" class="fa fa-star" rating="4"></span>
+                                <span id="rating5" class="fa fa-star" rating="5"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-7 p-0 pr-3">
+                        <div class="form-group">
+                            <div id="review-Category">
+                                <label for="reviewCategory" class="font-weight-bold mr-3">Category</label>
+                                <div>${myPreferences[key].class}</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="review-comments">
+                                <label for="reviewComments" class="font-weight-bold">Comments</label>
+                                <textarea class="form-control" id="reviewComments" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <div id="review-map" class="col-12 col p-5 border">
+                        GOOGLE MAP API STUFF HERE
+                    </div>
+                </div>
+                <button id="review-bttnSave" class="btn mt-3 px-3 float-right text-white"><span class="h6">Close</span></button>
+            </div>
+        </div>
+    </div>
+</div>`)
+        
+       
+
+
+
+    });
+        
+
+
+
+
+
+
+
+
+
+
 
 </script>
-
 
 </html>
