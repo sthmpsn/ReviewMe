@@ -1,0 +1,20 @@
+
+
+#row-footer {
+    background-color: #3BBB8A;
+}
+
+#submit {
+    background-color: #3BBB8A;
+}
+
+#page-title {
+    color: #3BBB8A;
+    font-family: 'Candal';
+    font-size: 30px;
+    background: url('../images/lighthouse-170214__340.jpg');
+}
+#input-card {
+    font-family: 'Candal';
+    color: rgb(88, 56, 148);
+}

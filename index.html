@@ -4,9 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sup Guys</title>
+    <title>Exceptional</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Candal' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="row">
+                <div class="col-sm-4 col-md-6 col-lg-6 ml-5 bg-light" id="input-card"> 
+                    <div class="card-header">
+                            User Information
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="name-first">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="name-last">
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">User Name</label>
+                            <input type="text" class="form-control" id="userName">
+                        </div>
+                        <button type="button" class="btn btn-primary mb-2 mx-2" id = "submit" style="width: 10rem;">Submit</button>
+                    </div>
+            <div class="col-5" id="page-title">
+                    <h1>Exceptional Food and Drink</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container fixed-bottom">  
+            <div id="row-footer" class="row">
+                <div id="footer-left" class="col-3 footer text-center text-white">
+                    <img id="imgSkull" class="footer-imgs" src="assets/images/skull.png" alt="Skull">
+                </div>
+                <div id="footer-center" class="col footer pb-2 text-center text-white align-self-end">
+                    Copyright © 2019  Exceptional Pirates Inc
+                </div>
+                <div id="footer-right" class="col-3 footer text-center text-white">
+                    <img id="imgShip" class="footer-imgs" src="assets/images/flag.gif" alt="flag">
+                </div>
+            </div>
+        </div>
+    <script src="assets/javascript/favorites.js"></script>
+
 </body>
 </html>
