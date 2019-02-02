@@ -151,25 +151,14 @@
         database.ref().on("child_added", function (childSnapshot) {
             myPreferences = childSnapshot.val().Jim.reviews;
             for (key in myPreferences) {
-                console.log(myPreferences[key].class)
+                //console.log(myPreferences[key].class)
                 if (myPreferences[key].class == "restaurants") {
-                    //console.log(myPreferences[key].name);
-                    //console.log(myPreferences[key].rating);
                     $("#review-content").append(`
-                <div id="review-id" class="review-summaries mx-md-3 my-md-3">
-                        <!-- review.name -->
+                <div id="${myPreferences[key].name}" class="review-summaries mx-md-3 my-md-3">
+                        
                         <h5>${myPreferences[key].name}</h5>
-                        <!-- review.rating -->
-                        ${myPreferences[key].rating}
-                        <div class="form-group static-rating m-0">
-                            <div class="col-auto col star-ratings-static">
-                                <span id="rating1" class="fa fa-star" rating="1"></span>
-                                <span id="rating2" class="fa fa-star" rating="2"></span>
-                                <span id="rating3" class="fa fa-star" rating="3"></span>
-                                <span id="rating4" class="fa fa-star" rating="4"></span>
-                                <span id="rating5" class="fa fa-star" rating="5"></span>
-                            </div>
-                        </div>
+                        
+                        <h5>${myPreferences[key].rating}</h5>
                     </div>
                     `);
 
@@ -177,7 +166,7 @@
             }
         });
     });
-    
+
     $("#beer").on("click", function () {
         $("#review-content").empty();
         database.ref().on("child_added", function (childSnapshot) {
@@ -187,20 +176,9 @@
                     //console.log(myPreferences[key].name);
                     //console.log(myPreferences[key].rating);
                     $("#review-content").append(`
-                <div id="review-id" class="review-summaries mx-md-3 my-md-3">
-                        <!-- review.name -->
+                <div id="${myPreferences[key].name}" class="review-summaries mx-md-3 my-md-3">
                         <h5>${myPreferences[key].name}</h5>
-                        <!-- review.rating -->
-                        ${myPreferences[key].rating}
-                        <div class="form-group static-rating m-0">
-                            <div class="col-auto col star-ratings-static">
-                                <span id="rating1" class="fa fa-star" rating="1"></span>
-                                <span id="rating2" class="fa fa-star" rating="2"></span>
-                                <span id="rating3" class="fa fa-star" rating="3"></span>
-                                <span id="rating4" class="fa fa-star" rating="4"></span>
-                                <span id="rating5" class="fa fa-star" rating="5"></span>
-                            </div>
-                        </div>
+                        <h5>${myPreferences[key].rating}</h5>
                     </div>
                     `);
 
@@ -208,12 +186,34 @@
             }
         });
     });
-    
-    
-    $(document).on("click",".review-summaries", function(){
-        console.log(myPreferences);
-        $("#review-content").empty();
-        $("#review-content").append(`<div id="row-form" class="row">
+
+    function changeTargetSrc(searchKey,type) {
+        var queryUrl =
+            `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c7f330fcebe7bd701c8c8fe9de59c12&text=${searchKey}+${type}&sort=relevance&format=json&nojsoncallback=1`
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response.photos.photo[0]);
+            var photoId = response.photos.photo[0].id;
+            var photoSecret = response.photos.photo[0].secret;
+            var photoServer = response.photos.photo[0].server;
+            var photoFarm = response.photos.photo[0].farm;
+            var myImageUrl = `https://farm${photoFarm}.staticflickr.com/${photoServer}/${photoId}_${photoSecret}.jpg`
+            $(`#review-img`).attr("src", myImageUrl);
+        });
+    }
+    $(document).on("click", ".review-summaries", function () {
+        //console.log(myPreferences[key]);
+        var myId = $(this).attr("id");
+        for (key in myPreferences) {
+            //console.log(myPreferences[key].class)
+            if (myPreferences[key].name == myId) {
+                $("#first").on("click", function () {
+                    $("iframe").attr("src", "https://www.google.com/maps/embed/v1/search?q=mcdonalds&key=AIzaSyDz_LZnOTM0GcmyL6VQ7DsDfZmZ-Pi3LcA")
+                });
+                $("#review-content").empty();
+                $("#review-content").append(`<div id="row-form" class="row">
     <div id="col-form" class="col p-0 px-md-5 py-md-5">
         <div class="card">
             <div class="card-header text-white h5">
@@ -223,20 +223,12 @@
                 <div class="row">
                     <div class="col-5 col-form-left p-0">
                         <div class="form-group m-0">
-                            <img id="review-img" src="assets/images/avatars/avatar-placeholder.png" alt="Review Item Name">
+                            <img id="review-img" alt="Review Item Name">
                         </div>
                         <div class="form-group m-0">
                             <div>${myPreferences[key].name}</div>
                         </div>
-                        <div class="form-group m-0">
-                            <div class="col-auto col mb-4 star-ratings">
-                                <span id="rating1" class="fa fa-star" rating="1"></span>
-                                <span id="rating2" class="fa fa-star" rating="2"></span>
-                                <span id="rating3" class="fa fa-star" rating="3"></span>
-                                <span id="rating4" class="fa fa-star" rating="4"></span>
-                                <span id="rating5" class="fa fa-star" rating="5"></span>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="col-7 p-0 pr-3">
                         <div class="form-group">
@@ -254,22 +246,24 @@
                     </div>
                 </div>
                 <div class="form-group mt-3">
-                    <div id="review-map" class="col-12 col p-5 border">
-                        GOOGLE MAP API STUFF HERE
+                    <div id="review-map" class="col-12 col p-0 border">
+                        <iframe width="100%" height="100%" frameborder="0" style="border:0" src='https://www.google.com/maps/embed/v1/search?q=${myPreferences[key].name}&key=AIzaSyDz_LZnOTM0GcmyL6VQ7DsDfZmZ-Pi3LcA' allowfullscreen></iframe>
                     </div>
                 </div>
                 <button id="review-bttnSave" class="btn mt-3 px-3 float-right text-white"><span class="h6">Close</span></button>
             </div>
         </div>
     </div>
-</div>`)
-        
-       
+</div>`);
+changeTargetSrc(myPreferences[key].name,myPreferences[key].class);
+            }
+        }
+
 
 
 
     });
-        
+
 
 
 
