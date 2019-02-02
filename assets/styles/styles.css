@@ -1,0 +1,118 @@
+/* debug help */
+
+/* .col {
+    border: 1px dashed red;
+} */
+
+
+/* End Debug */
+
+
+/* Styles that affect Tag Elements */
+input:-webkit-autofill {
+    /* Avoid Chrome's autofill from turning the background yellow by using box-shadow  */
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+body {
+    background-image: url("../images/concrete-texture.png");
+    height: 100%;
+}
+
+main {
+    /* This is what prevents the main content body from extending past the footer */
+    overflow: auto;
+    height: 75vh;
+}
+
+footer {
+    background-color: #3BBB8A;
+    box-shadow: 0 -2px 8px 3px grey;
+}
+
+/* Styles that affect classes */
+
+.card-body > button { 
+    background-color:#3BBB8A;
+}
+
+.container{
+    min-width: 573px;
+}
+
+.header-imgs {
+    height: 90px;
+    width: 90px;
+}
+
+.footer-imgs {
+    height: 75px;
+    width: 75px;
+    margin: 15px 0;
+}
+
+.category-items{
+    background-color: #3BBB8A;
+    margin: 3px 0;
+    padding: 15px;
+    box-shadow: 2px 2px 1px grey;
+}
+
+.shadow-default {
+    box-shadow: 10px 10px 5px grey;
+}
+
+.card-header {
+    background-color: #3BBB8A;
+}
+
+.col-form-left > .form-group {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.review-summaries {
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 15px;
+    text-align: center;
+    float: left;
+    padding: 20px;
+}
+
+
+/* Styles that affect individual element IDs */
+#row-header {
+    height: 150px;
+    border-bottom: 5px solid #4BE0A7 !important;
+}
+
+#header-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#welcome-msg {
+    background-color: #1D8B9C;
+}
+
+#bttn-createReview {
+    background-color:#19FFA7;
+    box-shadow: 2px 2px 1px grey;
+}
+
+#review-img {
+    height: 150px;
+    width: 150px;
+}
+
+#review-name{
+    border: none;
+}
+
+
+/* STAR RATING RELATED */
+.checked {
+    color: gold;
+}
