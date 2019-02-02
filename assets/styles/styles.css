@@ -8,29 +8,41 @@
 /* End Debug */
 
 
-/* Styles that affect classes */
-body {
-    background-image: url("../images/concrete-texture.png");
-    height: 100%;
-}
-
+/* Styles that affect Tag Elements */
 input:-webkit-autofill {
     /* Avoid Chrome's autofill from turning the background yellow by using box-shadow  */
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
+body {
+    background-image: url("../images/concrete-texture.png");
+    height: 100%;
+}
+
+main {
+    /* This is what prevents the main content body from extending past the footer */
+    overflow: auto;
+    height: 75vh;
+}
+
+footer {
+    background-color: #3BBB8A;
+    box-shadow: 0 -2px 8px 3px grey;
+}
+
+/* Styles that affect classes */
+
 .card-body > button { 
     background-color:#3BBB8A;
 }
-
 
 .container{
     min-width: 573px;
 }
 
 .header-imgs {
-    height: 75px;
-    width: 75px;
+    height: 90px;
+    width: 90px;
 }
 
 .footer-imgs {
@@ -87,11 +99,6 @@ input:-webkit-autofill {
 
 #review-name{
     border: none;
-}
-
-#row-footer {
-    background-color: #3BBB8A;
-    box-shadow: 0 -2px 8px 3px grey;
 }
 
 

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="container container-fluid border bg-light">
+    <header class="container container-fluid border">
         <div id="row-header" class="row pl-3 bg-white border align-items-center">
             <div id="header-logo" class="col-2 col-md-2 text-center">
                 <img id="imgLogo" class="header-imgs" src="assets/images/logo.png" alt="logo MyReviews">
@@ -36,40 +36,44 @@
                 </div>
             </div>
         </div>
-        <div id="row-content" class="row">
-            <div id="review-categories" class="col col-12 col-md-3 col-content px-0">
-                <button id="bttn-createReview" class="w-100 py-3 m-0 h3">Create Review</button>
-                <div id="cat-beer" class="category-items w-100 h3 text-white">
-                    Beer
+    </header>
+        <main class="container bg-light">
+            <div id="row-content" class="row">
+                <div id="review-categories" class="col col-12 col-md-3 col-content px-0">
+                    <button id="bttn-createReview" class="w-100 py-3 m-0 h3">Create Review</button>
+                    <div id="cat-beer" class="category-items w-100 h3 text-white">
+                        Beer
+                    </div>
+                    <div id="cat-restaurants" class="category-items w-100 h3 text-white">
+                        Restaurants
+                    </div>
                 </div>
-                <div id="cat-restaurants" class="category-items w-100 h3 text-white">
-                    Restaurants
+                <div id="review-content" class="col col-12 col-md-9 col-content">
+                    <div id="welcome-msg" class="mx-auto my-5 p-5 w-75 rounded text-center alert-info text-white shadow-default">
+                        <p class="h3 mb-3">Welcome to MyReviews!!</p>
+                        <p class="h6">To get started with your first review, click the "Create Review" button</p>
+                    </div>
                 </div>
             </div>
-            <div id="review-content" class="col col-12 col-md-9 col-content">
-                <div id="welcome-msg" class="mx-auto my-5 p-5 w-75 rounded text-center alert-info text-white shadow-default">       
-                    <p class="h3 mb-3">Welcome to MyReviews!!</p>
-                    <p class="h6">To get started with your first review, click the "Create Review" button</p>
-                </div>  
+    </main>
+    <footer class="container">
+        <div id="row-footer" class="row">
+            <div id="footer-left" class="col-3 footer text-center text-white">
+                <img id="imgSkull" class="footer-imgs" src="assets/images/skull.png" alt="Skull">
+            </div>
+            <div id="footer-center" class="col footer pb-2 text-center text-white align-self-end">
+                Copyright © 2019 Exceptional Pirates Inc
+            </div>
+            <div id="footer-right" class="col-3 footer text-center text-white">
+                <img id="imgShip" class="footer-imgs" src="assets/images/flag.gif" alt="flag">
             </div>
         </div>
-            <div id="row-footer" class="row">
-                <div id="footer-left" class="col-3 footer text-center text-white">
-                    <img id="imgSkull" class="footer-imgs" src="assets/images/skull.png" alt="Skull">
-                </div>
-                <div id="footer-center" class="col footer pb-2 text-center text-white align-self-end">
-                    Copyright © 2019 Exceptional Pirates Inc
-                </div>
-                <div id="footer-right" class="col-3 footer text-center text-white">
-                    <img id="imgShip" class="footer-imgs" src="assets/images/flag.gif" alt="flag">
-                </div>
-            </div>
-        </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-        <script src="assets/javascript/javascript.js"></script>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="assets/javascript/javascript.js"></script>
 </body>
 
 </html>
