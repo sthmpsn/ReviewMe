@@ -21,41 +21,66 @@ $(document).ready(function(){
     // Even Triggers
     $(document).on("click", "#submit", function(){
             event.preventDefault();  //Prevent the Submit button from acting like a Submit button and do the following
-            console.log("Submit button was Clicked");
-            var $fname = $("#name-first");
-            var $lname = $("#name-last");
-            var $username = $("#userName");
-            console.log($fname);
-            console.log($lname);
-            console.log($username);
+            var $fnameBox = $("#name-first");
+            var $lnameBox = $("#name-last");
+            var $usernameBox = $("#userName");
+            var fname = $fnameBox.val().trim();
+            var lname = $lnameBox.val().trim();
+            var currentUser = $usernameBox.val().trim();
 
-            if ($fname.val() !== "" && $lname.val() !== "" && $username.val() !== ""){
+            if (fname !== "" && lname !== "" && currentUser !== ""){
 
-                // var usernameVal = $username.val();
-                currentUser = $username.val().trim();
-            
-                // add an entry for the new user and set attributes to fname and lname
-                database.ref("users/"+currentUser).set({
-                        fname: $fname.val().trim(),
-                        lname: $lname.val().trim()
-                });
+                function pushUserToDB(){
+                    // Assign a random static Chuck Norris image URL from Giphy 
+                    var apiKey = "AnVFzv8FXQHu7I3N2iftwX1X5a4cNrCM";
+                    var topic = "chuck-norris";
+                    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +topic+ "&limit=20&api_key=" +apiKey;
+                    
+                    // add an entry for the new user and set attributes to fname and lname
+                    database.ref("users/"+currentUser).set({
+                        fname: fname,
+                        lname: lname,
+                    });
 
+                    $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                    }).then(function(response){
+                        console.log("QueryString: "+queryURL);
+                        var results = response.data;    // the array of search results 
+                        var randImg = Math.floor(Math.random() * (results.length -1));
+                        console.log ("RandNum: "+randImg);
+                        var randAvatarImg = results[randImg].images.original_still.url;
+                        console.log ("Avatar Chosen URL: "+randAvatarImg);    
 
-                // Set the username in Session Storage
-                if(currentUser !== ""){
-                    // sessionStorage.clear();
-                    // sessionStorage.setItem("username", currentUser);
-                    localStorage.clear();
-                    localStorage.setItem("username", currentUser);
+                        database.ref("users/"+currentUser).update({
+                            avatar: randAvatarImg
+                        });
+                    });
+                    // End Giphy image assignment
+                
+                    // Set the username in Session Storage
+                    if(currentUser !== ""){
+                        localStorage.clear();
+                        localStorage.setItem("username", currentUser);
+                    }
+
+                    // Clear the input boxes
+                    $fnameBox.val().trim();
+                    $lnameBox.val().trim();
+                    $usernameBox = ("");
                 }
 
-                // Clear the input boxes
-                $fname.val("");
-                $lname.val("");
-                $username.val("");
+            // Navigate to the main content page
+                function navToApp(){
+                    setTimeout ( function(){
+                    window.location.href = 'content.html';
+                    }, 500);
+                }
 
-                // Navigate to the main content page             
-                window.location.href = 'content.html';
+                pushUserToDB();
+                navToApp();
+
             }
             else{
                 $("#loginModal").show();
@@ -67,6 +92,11 @@ $(document).ready(function(){
         $(document).on("click", "#loginModalClose", function(){
             $("#loginModal").hide();
         });
+
+
+
+   
+
 
 
 
