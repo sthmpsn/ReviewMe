@@ -1,4 +1,14 @@
 $(document).ready(function(){
+console.log ("javascript.js loaded");
+
+    // Get session userName and display on site
+    $("#currentUser").text('not ' +localStorage.getItem("username")+ ' ?');
+
+    // Clear username from local storage if click "not <username>" link (simulate logout)
+    $(document).on("click", "#currentUser", function(){
+        localStorage.clear();
+    });
+
 
 // BEGIN STAR RATING RELATED
     $(document).on("click", ".star-ratings > .fa-star", function(){

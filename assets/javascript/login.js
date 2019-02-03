@@ -1,5 +1,8 @@
 $(document).ready(function(){
-    console.log ("Page loading");
+    console.log ("login.js loading");
+    // Global Variable
+    var currentUser = "";
+
 
     // Initialize Firebase
     var config = {
@@ -18,7 +21,7 @@ $(document).ready(function(){
     // Even Triggers
     $(document).on("click", "#submit", function(){
             event.preventDefault();  //Prevent the Submit button from acting like a Submit button and do the following
-            console.log("Add User was Clicked");
+            console.log("Submit button was Clicked");
             var $fname = $("#name-first");
             var $lname = $("#name-last");
             var $username = $("#userName");
@@ -26,25 +29,37 @@ $(document).ready(function(){
             console.log($lname);
             console.log($username);
      
-            var usernameVal = $username.val();
+            // var usernameVal = $username.val();
+            currentUser = $username.val().trim();
            
             // add an entry for the new user and set attributes to fname and lname
-            database.ref("users/"+usernameVal).set({
-                    fname: $fname.val(),
-                    lname: $lname.val()
+            database.ref("users/"+currentUser).set({
+                    fname: $fname.val().trim(),
+                    lname: $lname.val().trim()
             });
 
 
+            // Set the username in Session Storage
+            if(currentUser !== ""){
+                // sessionStorage.clear();
+                // sessionStorage.setItem("username", currentUser);
+                localStorage.clear();
+                localStorage.setItem("username", currentUser);
+               }
+
             // Clear the input boxes
-                $fname.val("");
-                $lname.val("");
-                $username.val("");
-    
+            $fname.val("");
+            $lname.val("");
+            $username.val("");
+
+            // Navigate to the main content page             
             window.location.href = 'content.html';
+
+            
         });
 
 
-
+        
 
 
 
