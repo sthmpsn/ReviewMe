@@ -58,20 +58,15 @@ $(document).ready(function(){
                 window.location.href = 'content.html';
             }
             else{
-                $("#myModal").show();
-
+                $("#loginModal").show();
             }
-
-            
-
-
-
             
         });
 
-
-        
-
+    // loginModal close button closure action
+        $(document).on("click", "#loginModalClose", function(){
+            $("#loginModal").hide();
+        });
 
 
 

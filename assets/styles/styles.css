@@ -32,7 +32,7 @@ footer {
 
 /* Styles that affect classes */
 
-.card-body > button, #submit { 
+.card-body > button, #submit, #loginModalClose { 
     background-color:#3BBB8A;
 }
 
