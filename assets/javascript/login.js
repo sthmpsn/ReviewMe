@@ -94,10 +94,16 @@ $(document).ready(function(){
         });
 
 
+    // For Header image load
+        var storedUser = localStorage.getItem("username");
 
-   
+        database.ref(`users/${storedUser}`).on("value", function(snapshot) {
+            console.log("Stored user Avatar Retrieved: "+snapshot.val().avatar);
+            var storedUserAvatar = snapshot.val().avatar;
+            $("#imgAvatar").attr("src", storedUserAvatar);
 
 
+        });
 
 
 
