@@ -1,12 +1,11 @@
 $(document).ready(function () {
-
-    // BEGIN STAR RATING RELATED
+    // BEGIN STAR RATING RELATED - can remove this eventually
     $(document).on("click", ".star-ratings > .fa-star", function () {
         // Clear any existing stars that were previously colored since a rating change is desired
         $(".star-ratings > .fa-star").removeClass("checked");
 
         // Get the Clicked Object
-        var starNum = $(this)
+        starNum = $(this)
         console.log("Star Object: " + starNum);
         // Get the start rating (1,2,3,4 or 5)
         var starRating = starNum.attr("rating")
@@ -17,7 +16,9 @@ $(document).ready(function () {
             console.log("Color Filled Star " + i + " with gold")
         }
     });
+
     // END STAR RATING RELATED
+
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyCYMFkr7RuA6LabcsxJulA93r57UpIHFMw",
@@ -30,6 +31,7 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
 
+    //create variables - how many of these do we need?
     var database = firebase.database();
     var username;
     var review_rating;
@@ -39,14 +41,6 @@ $(document).ready(function () {
     var place;
     // For Header image load
     var storedUser = localStorage.getItem("username");
-
-    //new user 
-
-
-
-
-
-
 
     //display-page, category button-clicks
     $("#cat-restaurants").on("click", function () {
@@ -76,8 +70,8 @@ $(document).ready(function () {
         });
     });
 
-     //display-page, category button-clicks
-     $("#cat-beer").on("click", function () {
+    //display-page, category button-clicks
+    $("#cat-beer").on("click", function () {
         //database.ref().on("child_added", function (childSnapshot) {
         database.ref(`users/${storedUser}`).once("value", childSnapshot => {
             console.log(childSnapshot.val());
@@ -107,7 +101,7 @@ $(document).ready(function () {
 
 
 
-  
+
     //image api call
     function changeTargetSrc(searchKey, type) {
         var queryUrl =
@@ -132,53 +126,52 @@ $(document).ready(function () {
         window.location.href = 'content-form.html';
     });
 
-    
+    //creating new review
     $(document).on("click", "#review-bttnSave", function () {
         var reviewCategory = $("#review-categories-select").val();
-        var reviewName = $("#review-name").val();
-        var reviewRating = $("#review-name").val();
+        var reviewName = $("#reviewName").val();
         var reviewComments = $("#reviewComments").val();
-        
+        var reviewRating = $("#reviewRating").val();
 
+        //review object
         var reviewObject = {
             name: reviewName,
             class: reviewCategory,
             comments: reviewComments,
-            rating: 4.0,
-            
-        }
+            rating: reviewRating
+        };
 
-        
         console.log(reviewObject);
         var increment;
 
+        //creating and using increment for unique review Id
         navToApp2();
-        database.ref(`users/${storedUser}`).on("value", function(snapshot){
+        database.ref(`users/${storedUser}`).on("value", function (snapshot) {
             increment = snapshot.val().reviewCount;
             increment++;
         });
+
         database.ref(`/users/${storedUser}`).update({
             reviewCount: increment
         });
+
+        //add our review object to the database under current user
         database.ref(`/users/${storedUser}/reviews/review${increment}`).update(reviewObject);
-        
-        
 
     });
+
 
     function navToApp2() {
         setTimeout(function () {
             window.location.href = 'content-reviews.html';
-        }, 500);
+        }, 250);
     }
-
 
     //display-preference on-click using dynamic js
     $(document).on("click", ".review-summaries", function () {
         //console.log(myPreferences[key]);
         var myId = $(this).attr("id");
         for (key in myPreferences) {
-            //console.log(myPreferences[key].class)
             if (myPreferences[key].name == myId) {
                 $("#first").on("click", function () {
                     $("iframe").attr("src", "https://www.google.com/maps/embed/v1/search?q=mcdonalds&key=AIzaSyDz_LZnOTM0GcmyL6VQ7DsDfZmZ-Pi3LcA")
@@ -210,7 +203,7 @@ $(document).ready(function () {
                     <div class="form-group">
                         <div id="review-comments">
                             <label for="reviewComments" class="font-weight-bold">Comments</label>
-                            <textarea class="form-control" id="reviewComments" rows="5"></textarea>
+                            <div>${myPreferences[key].comments}</div>
                         </div>
                     </div>
                 </div>
@@ -234,7 +227,6 @@ $(document).ready(function () {
     // Global Variable
     var storedUserAvatar = "";
 
-
     // Even Triggers
     $(document).on("click", "#submit", function () {
         event.preventDefault();  //Prevent the Submit button from acting like a Submit button and do the following
@@ -244,9 +236,7 @@ $(document).ready(function () {
         var fname = $fnameBox.val().trim();
         var lname = $lnameBox.val().trim();
         var currentUser = $usernameBox.val().trim();
-
-
-
+        $("#currentUser").html(currentUser);
 
         if (fname !== "" && lname !== "" && currentUser !== "") {
 
@@ -262,7 +252,7 @@ $(document).ready(function () {
                     lname: lname,
                     reviewCount: 1
                 });
-                
+
                 $.ajax({
                     url: queryURL,
                     method: "GET"
@@ -296,13 +286,10 @@ $(document).ready(function () {
             function navToApp() {
                 setTimeout(function () {
                     window.location.href = 'content.html';
-                }, 500);
+                }, 250);
             }
-            
-
             pushUserToDB();
             navToApp();
-
         }
         else {
             $("#loginModal").show();
@@ -314,7 +301,6 @@ $(document).ready(function () {
     $(document).on("click", "#loginModalClose", function () {
         $("#loginModal").hide();
     });
-
 
     console.log(storedUser);
 
