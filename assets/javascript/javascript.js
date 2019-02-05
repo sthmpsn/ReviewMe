@@ -41,18 +41,33 @@ $(document).ready(function () {
     var place;
     // For Header image load
     var storedUser = localStorage.getItem("username");
-    
+    // loading the Avatar
+    var storedUserAvatar;
+    // For deciding whether to save to database on "Close" of review or closing out of view the details of existin review item 
+    localStorage.setItem("newReview", false);
+    var newReview = localStorage.getItem("newReview");
+    console.log("NEW REVIEW???: "+newReview);
+
     $("#currentUser").html("not " +storedUser+ " ?");
+    
+
+
+
+
 
     //display-page, category button-clicks
     $("#cat-restaurants").on("click", function () {
+        //set local storage of newReview to false so it doesn't try to write to db when just viewing an existing review
+        localStorage.removeItem("newReview");
+        localStorage.setItem("newReview", false);
+        console.log("New Cat Review???: "+newReview);
         database.ref(`users/${storedUser}`).once("value", childSnapshot => {
-            console.log(childSnapshot.val());
+            console.log("Restaurant Snapshot Info: "+childSnapshot.val());
             if (childSnapshot.val().reviews !== undefined) {
                 $("#review-content").empty();
                 myPreferences = childSnapshot.val().reviews;
                 for (key in myPreferences) {
-                    console.log(myPreferences[key].class)
+                    console.log("Restaurant Preferences: "+myPreferences[key].class)
                     if (myPreferences[key].class == "Restaurant") {
                         $("#review-content").append(`
                 <div id="${myPreferences[key].name}" class="review-summaries mx-md-3 my-md-3">
@@ -74,14 +89,17 @@ $(document).ready(function () {
 
     //display-page, category button-clicks
     $("#cat-beer").on("click", function () {
-        //database.ref().on("child_added", function (childSnapshot) {
+        //set local storage of newReview to false so it doesn't try to write to db when just viewing an existing review
+        localStorage.removeItem("newReview");
+        localStorage.setItem("newReview", false);
+        console.log("New Beer Review???: "+newReview);
         database.ref(`users/${storedUser}`).once("value", childSnapshot => {
-            console.log(childSnapshot.val());
+            console.log("Beer Snapshot Info: "+childSnapshot.val());
             if (childSnapshot.val().reviews !== undefined) {
                 $("#review-content").empty();
                 myPreferences = childSnapshot.val().reviews;
                 for (key in myPreferences) {
-                    console.log(myPreferences[key].class)
+                    console.log("Beer Preferences: "+myPreferences[key].class)
                     if (myPreferences[key].class == "Beer") {
                         $("#review-content").append(`
                 <div id="${myPreferences[key].name}" class="review-summaries mx-md-3 my-md-3">
@@ -125,6 +143,10 @@ $(document).ready(function () {
 
     //create new review form
     $("#bttn-createReview").on("click", function () {
+        // Set the "newReview" attribute in Session Storage to true
+        localStorage.removeItem("newReview");
+        localStorage.setItem("newReview", true);
+        // navigate to the content-form
         window.location.href = 'content-form.html';
     });
 
@@ -135,33 +157,44 @@ $(document).ready(function () {
         var reviewComments = $("#reviewComments").val();
         var reviewRating = $("#reviewRating").val();
 
-        //review object
-        var reviewObject = {
-            name: reviewName,
-            class: reviewCategory,
-            comments: reviewComments,
-            rating: reviewRating
-        };
+        // pull the latest status of the newReview local storage value
+        newReview = localStorage.getItem("newReview");
+        console.log("New Review?: "+newReview);
 
-        console.log(reviewObject);
-        var increment;
+        if (newReview){
+            //review object
+            var reviewObject = {
+                name: reviewName,
+                class: reviewCategory,
+                comments: reviewComments,
+                rating: reviewRating
+            };
 
-        //creating and using increment for unique review Id
+            console.log("Review Object: "+reviewObject);
+            var increment;
+
+            //creating and using increment for unique review Id
+            // navToApp2();
+            database.ref(`users/${storedUser}`).on("value", function (snapshot) {
+                increment = snapshot.val().reviewCount;
+                increment++;
+            });
+
+            database.ref(`/users/${storedUser}`).update({
+                reviewCount: increment
+            });
+
+            //add our review object to the database under current user
+            database.ref(`/users/${storedUser}/reviews/review${increment}`).update(reviewObject);
+
+            
+
+        }
         navToApp2();
-        database.ref(`users/${storedUser}`).on("value", function (snapshot) {
-            increment = snapshot.val().reviewCount;
-            increment++;
-        });
 
-        database.ref(`/users/${storedUser}`).update({
-            reviewCount: increment
-        });
-
-        //add our review object to the database under current user
-        database.ref(`/users/${storedUser}/reviews/review${increment}`).update(reviewObject);
 
     });
-
+    
 
     function navToApp2() {
         setTimeout(function () {
@@ -171,7 +204,6 @@ $(document).ready(function () {
 
     //display-preference on-click using dynamic js
     $(document).on("click", ".review-summaries", function () {
-        //console.log(myPreferences[key]);
         var myId = $(this).attr("id");
         for (key in myPreferences) {
             if (myPreferences[key].name == myId) {
@@ -227,6 +259,7 @@ $(document).ready(function () {
     });
     // Steve Code
     // Global Variable
+    var currentUser;
 
     // Even Triggers
     $(document).on("click", "#submit", function () {
@@ -236,40 +269,32 @@ $(document).ready(function () {
         var $usernameBox = $("#userName");
         var fname = $fnameBox.val().trim();
         var lname = $lnameBox.val().trim();
-        var currentUser = $usernameBox.val().trim();
+        currentUser = $usernameBox.val().trim();
         console.log("Stored Username: "+storedUser);
 
         if (fname !== "" && lname !== "" && currentUser !== "") {
+            pushUserToDB();
+            navToApp();
+        }
+    else {
+        $("#loginModal").show();
+    }
 
-            function pushUserToDB() {
-                // Assign a random static Chuck Norris image URL from Giphy 
-                var apiKey = "AnVFzv8FXQHu7I3N2iftwX1X5a4cNrCM";
-                var topic = "chuck-norris";
-                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&limit=20&api_key=" + apiKey;
-
-                // add an entry for the new user and set attributes to fname and lname
-                database.ref("users/" + currentUser).set({
-                    fname: fname,
-                    lname: lname,
-                    reviewCount: 1
-                });
-
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function (response) {
-                    console.log("QueryString: " + queryURL);
-                    var results = response.data;    // the array of search results 
-                    var randImg = Math.floor(Math.random() * (results.length - 1));
-                    console.log("RandNum: " + randImg);
-                    var randAvatarImg = results[randImg].images.original_still.url;
-                    console.log("Avatar Chosen URL: " + randAvatarImg);
-
-                    database.ref("users/" + currentUser).update({
-                        avatar: randAvatarImg
+        // START FUNCTION TO PUSH USER TO DB
+        function pushUserToDB() {
+            database.ref("users/"+currentUser).once("value", function(snapshot){
+                if (snapshot.exists()){
+                console.log("exists!" + currentUser);
+                // navToApp();
+                }
+                else{
+                    // add an entry for the new user and set attributes to fname and lname
+                    database.ref("users/" + currentUser).set({
+                        fname: fname,
+                        lname: lname,
+                        reviewCount: 1
                     });
-                });
-                // End Giphy image assignment
+                }
 
                 // Set the username in Session Storage
                 if (currentUser !== "") {
@@ -277,35 +302,64 @@ $(document).ready(function () {
                     localStorage.setItem("username", currentUser);
                 }
 
-                // Clear the input boxes
-                $fnameBox.val().trim();
-                $lnameBox.val().trim();
-                $usernameBox = ("");
-            }
-
-            // Navigate to the main content page
-            function navToApp() {
-                setTimeout(function () {
-                    window.location.href = 'content.html';
-                }, 250);
-            }
-            pushUserToDB();
-            navToApp();
+                setAvatar();
+                navToApp();
+            });
         }
-        else {
-            $("#loginModal").show();
-        }
+        // END FUNCTION TO PUSH USER TO DB
 
+        function setAvatar(){
+            // Assign a random static Chuck Norris image URL from Giphy 
+            var apiKey = "AnVFzv8FXQHu7I3N2iftwX1X5a4cNrCM";
+            var topic = "chuck-norris";
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&limit=20&api_key=" + apiKey;
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log("QueryString: " + queryURL);
+                var results = response.data;    // the array of search results 
+                var randImg = Math.floor(Math.random() * (results.length - 1));
+                console.log("RandNum: " + randImg);
+                var randAvatarImg = results[randImg].images.original_still.url;
+                console.log("Avatar Chosen URL: " + randAvatarImg);
+
+                database.ref("users/" + currentUser).update({
+                    avatar: randAvatarImg
+                });
+
+                
+
+            });
+        }
+        // End Giphy image assignment
     });
+    //END ON CLICK SUBMIT
+
+   
+            
+
+
+    // Navigate to the main content page
+    function navToApp() {
+        setTimeout(function () {
+            window.location.href = 'content.html';
+        }, 500);
+    }
+
 
     // loginModal close button closure action
     $(document).on("click", "#loginModalClose", function () {
         $("#loginModal").hide();
     });
 
-    console.log(storedUser);
+    console.log("Stored User: "+storedUser);
 
-    database.ref(`users/${storedUser}`).on("value", function (snapshot) {
+    
+
+    // display Stored Avatar
+    database.ref("users/"+storedUser).on("value", function (snapshot) {
         storedUserAvatar = snapshot.val().avatar;
         console.log("Stored user Avatar Retrieved: " + storedUserAvatar);
         $("#imgAvatar").attr("src", storedUserAvatar);
@@ -327,20 +381,4 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
 });
-
-
-
-
-
-
-
-
-
-
