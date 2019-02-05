@@ -50,7 +50,10 @@ $(document).ready(function () {
 
     $("#currentUser").html("not " +storedUser+ " ?");
     
-
+    if (newReview === "true"){
+        console.log("REACHED HERE")
+        $("#review-bttnSave span").html("Save");
+    }
 
 
 
