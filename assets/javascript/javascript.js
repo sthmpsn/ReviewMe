@@ -1,3 +1,4 @@
+var referenceId = 0;
 $(document).ready(function () {
 
     // BEGIN STAR RATING RELATED
@@ -37,7 +38,7 @@ $(document).ready(function () {
     var review;
     var myPreferences = "";
     var place;
-    var referenceId = 1;
+    
     // For Header image load
     var storedUser = localStorage.getItem("username");
 
@@ -134,6 +135,8 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#review-bttnSave", function () {
+        referenceId ++;
+        console.log("counter: " + referenceId);
         var reviewCategory = $("#review-categories-select").val();
         var reviewName = $("#review-name").val();
         var reviewRating = $("#review-name").val();
@@ -146,10 +149,17 @@ $(document).ready(function () {
             rating: 4.0
         }
         console.log(reviewObject);
-        referenceId++;
         database.ref(`/users/${storedUser}/reviews/review${referenceId}`).update(reviewObject);
-        window.location.href = 'content-reviews.html';
+        navToApp2();
+        
+
     });
+
+    function navToApp2() {
+        setTimeout(function () {
+            window.location.href = 'content-reviews.html';;
+        }, 5000);
+    }
 
 
     //display-preference on-click using dynamic js
@@ -276,6 +286,7 @@ $(document).ready(function () {
                     window.location.href = 'content.html';
                 }, 500);
             }
+            
 
             pushUserToDB();
             navToApp();
