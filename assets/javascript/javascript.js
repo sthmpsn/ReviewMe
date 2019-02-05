@@ -53,10 +53,10 @@ $(document).ready(function () {
     $("#cat-restaurants").on("click", function () {
         $("#review-content").empty();
         //database.ref().on("child_added", function (childSnapshot) {
-        database.ref(`users/${storedUser}/reviews`).once("value", childSnapshot => {
-            console.log(childSnapshot);
-            if (childSnapshot.exists()) {
-                myPreferences = childSnapshot.val().currentUser.reviews;
+        database.ref(`users/${storedUser}`).once("value", childSnapshot => {
+            console.log(childSnapshot.val());
+            if (childSnapshot.val().reviews !== undefined) {
+                myPreferences = childSnapshot.val().reviews;
                 for (key in myPreferences) {
                     //console.log(myPreferences[key].class)
                     if (myPreferences[key].class == "restaurants") {
@@ -71,15 +71,11 @@ $(document).ready(function () {
                     }
                 }
                 console.log("it exists");
-
             }
             else {
                 console.log("does not");
             }
-
         });
-
-        //    });
     });
 
 
