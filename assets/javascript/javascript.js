@@ -132,6 +132,7 @@ $(document).ready(function () {
         window.location.href = 'content-form.html';
     });
 
+    
     $(document).on("click", "#review-bttnSave", function () {
         var reviewCategory = $("#review-categories-select").val();
         var reviewName = $("#review-name").val();
@@ -149,23 +150,26 @@ $(document).ready(function () {
 
         
         console.log(reviewObject);
-        //database.ref(`/users/${storedUser}/reviews/review${reviewCount}`).update(reviewObject);
+        var increment;
 
-        //navToApp2();
+        navToApp2();
         database.ref(`users/${storedUser}`).on("value", function(snapshot){
-            var increment = snapshot.val().reviewCount++;
-            database.ref(`/users/${storedUser}`).update({
-                reviewCount: increment
-            });
+            increment = snapshot.val().reviewCount;
+            increment++;
         });
+        database.ref(`/users/${storedUser}`).update({
+            reviewCount: increment
+        });
+        database.ref(`/users/${storedUser}/reviews/review${increment}`).update(reviewObject);
+        
         
 
     });
 
     function navToApp2() {
         setTimeout(function () {
-            window.location.href = 'content-reviews.html';;
-        }, 5000);
+            window.location.href = 'content-reviews.html';
+        }, 500);
     }
 
 
