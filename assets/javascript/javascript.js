@@ -51,15 +51,14 @@ $(document).ready(function () {
 
     //display-page, category button-clicks
     $("#cat-restaurants").on("click", function () {
-        //database.ref().on("child_added", function (childSnapshot) {
         database.ref(`users/${storedUser}`).once("value", childSnapshot => {
             console.log(childSnapshot.val());
             if (childSnapshot.val().reviews !== undefined) {
                 $("#review-content").empty();
                 myPreferences = childSnapshot.val().reviews;
                 for (key in myPreferences) {
-                    //console.log(myPreferences[key].class)
-                    if (myPreferences[key].class == "restaurants") {
+                    console.log(myPreferences[key].class)
+                    if (myPreferences[key].class == "Restaurant") {
                         $("#review-content").append(`
                 <div id="${myPreferences[key].name}" class="review-summaries mx-md-3 my-md-3">
 
@@ -87,8 +86,8 @@ $(document).ready(function () {
                 $("#review-content").empty();
                 myPreferences = childSnapshot.val().reviews;
                 for (key in myPreferences) {
-                    //console.log(myPreferences[key].class)
-                    if (myPreferences[key].class == "beer") {
+                    console.log(myPreferences[key].class)
+                    if (myPreferences[key].class == "Beer") {
                         $("#review-content").append(`
                 <div id="${myPreferences[key].name}" class="review-summaries mx-md-3 my-md-3">
 
@@ -147,8 +146,8 @@ $(document).ready(function () {
             rating: 4.0
         }
         console.log(reviewObject);
-        database.ref(`/Users/${storedUser}/preferences`).child(`review${referenceId}`).set(reviewObject);
         referenceId++;
+        database.ref(`/users/${storedUser}/reviews/review${referenceId}`).update(reviewObject);
         window.location.href = 'content-reviews.html';
     });
 
