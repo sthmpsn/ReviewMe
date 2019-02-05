@@ -44,8 +44,9 @@ $(document).ready(function () {
     // loading the Avatar
     var storedUserAvatar;
     // For deciding whether to save to database on "Close" of review or closing out of view the details of existin review item 
-    localStorage.setItem("newReview", false);
-    var newReview = localStorage.getItem("newReview");
+    // localStorage.setItem("newReview", false);
+    var newReview;
+    //  = localStorage.getItem("newReview");
     console.log("NEW REVIEW???: "+newReview);
 
     $("#currentUser").html("not " +storedUser+ " ?");
@@ -161,8 +162,9 @@ $(document).ready(function () {
         newReview = localStorage.getItem("newReview");
         console.log("New Review?: "+newReview);
 
-        if (newReview){
+        if (newReview === "true"){
             //review object
+            console.log("New Review Initiated");
             var reviewObject = {
                 name: reviewName,
                 class: reviewCategory,
@@ -174,7 +176,6 @@ $(document).ready(function () {
             var increment;
 
             //creating and using increment for unique review Id
-            // navToApp2();
             database.ref(`users/${storedUser}`).on("value", function (snapshot) {
                 increment = snapshot.val().reviewCount;
                 increment++;
