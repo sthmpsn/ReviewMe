@@ -44,7 +44,7 @@ $(document).ready(function () {
     // loading the Avatar
     var storedUserAvatar;
     // For deciding whether to save to database on "Close" of review or closing out of view the details of existin review item 
-    localStorage.setItem("newReview", false);
+    // localStorage.setItem("newReview", false);
     var newReview = localStorage.getItem("newReview");
     console.log("NEW REVIEW???: "+newReview);
 
