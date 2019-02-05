@@ -51,11 +51,11 @@ $(document).ready(function () {
 
     //display-page, category button-clicks
     $("#cat-restaurants").on("click", function () {
-        $("#review-content").empty();
         //database.ref().on("child_added", function (childSnapshot) {
         database.ref(`users/${storedUser}`).once("value", childSnapshot => {
             console.log(childSnapshot.val());
             if (childSnapshot.val().reviews !== undefined) {
+                $("#review-content").empty();
                 myPreferences = childSnapshot.val().reviews;
                 for (key in myPreferences) {
                     //console.log(myPreferences[key].class)
@@ -78,23 +78,38 @@ $(document).ready(function () {
         });
     });
 
+     //display-page, category button-clicks
+     $("#cat-beer").on("click", function () {
+        //database.ref().on("child_added", function (childSnapshot) {
+        database.ref(`users/${storedUser}`).once("value", childSnapshot => {
+            console.log(childSnapshot.val());
+            if (childSnapshot.val().reviews !== undefined) {
+                $("#review-content").empty();
+                myPreferences = childSnapshot.val().reviews;
+                for (key in myPreferences) {
+                    //console.log(myPreferences[key].class)
+                    if (myPreferences[key].class == "beer") {
+                        $("#review-content").append(`
+                <div id="${myPreferences[key].name}" class="review-summaries mx-md-3 my-md-3">
 
-    $("#cat-beer").on("click", function () {
-        $("#review-content").empty();
-        database.ref().on("child_added", function (childSnapshot) {
-            myPreferences = childSnapshot.val().currentUser.reviews;
-            for (key in myPreferences) {
-                if (myPreferences[key].class == "beer") {
-                    $("#review-content").append(`
-            <div id="${myPreferences[key].name}" class="review-summaries mx-md-3 my-md-3">
-                    <h5>${myPreferences[key].name}</h5>
-                    <h5>${myPreferences[key].rating}</h5>
-                </div>
-                `);
+                        <h5>${myPreferences[key].name}</h5>
+
+                        <h5>${myPreferences[key].rating}</h5>
+                    </div>
+                        `)
+                    }
                 }
+                console.log("it exists");
+            }
+            else {
+                console.log("does not");
             }
         });
     });
+
+
+
+  
     //image api call
     function changeTargetSrc(searchKey, type) {
         var queryUrl =
@@ -132,9 +147,9 @@ $(document).ready(function () {
             rating: 4.0
         }
         console.log(reviewObject);
-        database.ref(`/Users/${currentUser}/preferences`).child(`review${referenceVar}`).set(reviewObject);
-        referenceVar++;
-        window.location.href = 'content.-reviews.html';
+        database.ref(`/Users/${storedUser}/preferences`).child(`review${referenceId}`).set(reviewObject);
+        referenceId++;
+        window.location.href = 'content-reviews.html';
     });
 
 
