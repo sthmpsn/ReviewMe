@@ -37,38 +37,21 @@ var avatar;
 var review;
 var myPreferences = "";
 var place;
-var users = {
-    person1: {
-        name: "Jim",
-        reviews: {
-            review1: {
-                name: "Bush Lght",
-                class: "beer",
-                rating: "4.0"
-            }
-        }
-    },
-    person2: {
-        name: "Joe",
-        reviews: {
-            review1: {
-                name: "Bud Light",
-                class: "beer",
-                rating: "4.0"
-            },
-            review2: {
-                name: "Arby's",
-                class: "restaurants",
-                rating: "5.0"
-            },
-            review3: {
-                name: "Wendy's",
-                class: "restaurants",
-                rating: "3.0"
-            }
-        }
-    }
-}
+var currentUser = "Todd"
+var referenceId = 1;
+
+//new user 
+
+
+
+
+
+
+
+
+
+
+
 
 //display-page, category button-clicks
 $("#cat-restaurants").on("click", function () {
@@ -90,6 +73,7 @@ $("#cat-restaurants").on("click", function () {
         }
     });
 });
+
 $("#cat-beer").on("click", function () {
     $("#review-content").empty();
     database.ref().on("child_added", function (childSnapshot) {
@@ -123,16 +107,12 @@ function changeTargetSrc(searchKey, type) {
         $(`#review-img`).attr("src", myImageUrl);
     });
 }
-//js for new-preference form
-var currentUser = "Todd"
-var referenceVar = 1;
-
 
 
 //create new review form
 $("#bttn-createReview").on("click", function(){
     window.location.href = 'content-form.html';
-})
+});
 
 $(document).on("click", "#review-bttnSave", function () {
     var reviewCategory = $("#review-categories-select").val();
@@ -150,13 +130,7 @@ $(document).on("click", "#review-bttnSave", function () {
     database.ref(`/Users/${currentUser}/preferences`).child(`review${referenceVar}`).set(reviewObject);
     referenceVar++;
     window.location.href = 'content.-reviews.html';
-})
-
-
-
-
-
-
+});
 
 
 //display-preference on-click using dynamic js
