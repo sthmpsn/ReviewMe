@@ -1,4 +1,3 @@
-var referenceId = 0;
 $(document).ready(function () {
 
     // BEGIN STAR RATING RELATED
@@ -38,7 +37,6 @@ $(document).ready(function () {
     var review;
     var myPreferences = "";
     var place;
-    
     // For Header image load
     var storedUser = localStorage.getItem("username");
 
@@ -135,22 +133,31 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#review-bttnSave", function () {
-        referenceId ++;
-        console.log("counter: " + referenceId);
         var reviewCategory = $("#review-categories-select").val();
         var reviewName = $("#review-name").val();
         var reviewRating = $("#review-name").val();
         var reviewComments = $("#reviewComments").val();
+        
 
         var reviewObject = {
             name: reviewName,
             class: reviewCategory,
             comments: reviewComments,
-            rating: 4.0
+            rating: 4.0,
+            
         }
+
+        
         console.log(reviewObject);
-        database.ref(`/users/${storedUser}/reviews/review${referenceId}`).update(reviewObject);
-        navToApp2();
+        //database.ref(`/users/${storedUser}/reviews/review${reviewCount}`).update(reviewObject);
+
+        //navToApp2();
+        database.ref(`users/${storedUser}`).on("value", function(snapshot){
+            var increment = snapshot.val().reviewCount++;
+            database.ref(`/users/${storedUser}`).update({
+                reviewCount: increment
+            });
+        });
         
 
     });
@@ -249,8 +256,9 @@ $(document).ready(function () {
                 database.ref("users/" + currentUser).set({
                     fname: fname,
                     lname: lname,
+                    reviewCount: 1
                 });
-
+                
                 $.ajax({
                     url: queryURL,
                     method: "GET"
