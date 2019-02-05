@@ -41,6 +41,8 @@ $(document).ready(function () {
     var place;
     // For Header image load
     var storedUser = localStorage.getItem("username");
+    
+    $("#currentUser").html("not " +storedUser+ " ?");
 
     //display-page, category button-clicks
     $("#cat-restaurants").on("click", function () {
@@ -225,7 +227,6 @@ $(document).ready(function () {
     });
     // Steve Code
     // Global Variable
-    var storedUserAvatar = "";
 
     // Even Triggers
     $(document).on("click", "#submit", function () {
@@ -236,7 +237,7 @@ $(document).ready(function () {
         var fname = $fnameBox.val().trim();
         var lname = $lnameBox.val().trim();
         var currentUser = $usernameBox.val().trim();
-        $("#currentUser").html(currentUser);
+        console.log("Stored Username: "+storedUser);
 
         if (fname !== "" && lname !== "" && currentUser !== "") {
 
