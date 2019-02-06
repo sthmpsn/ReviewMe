@@ -17,12 +17,12 @@
             <div id="header-logo" class="col-2 col-md-2 text-center">
                 <img id="imgLogo" class="header-imgs" src="assets/images/logo.png" alt="logo MyReviews">
             </div>
-            <div id="header-brand" class="col-4 col-md-3 pl-0">
+            <div id="header-brand" class="col-4 col-md-3">
                 MyReviews
             </div>
             <div id="header-userInfo" class="col-4 col-md-7 pr-md-5">
                 <div id="row-avatar" class="row">
-                    <div id="avatar" class="col text-right pr-md-4 ">
+                    <div id="avatar" class="col text-right">
                         
                     </div>
                 </div>
@@ -52,6 +52,23 @@
                     </div>
             <div class="col-5 text-center mt-5" id="page-title">
                     <img src="assets/images/animated2.gif" height="80%" width="80%" class="rounded">
+                      <!-- Begin Modal -->
+                        <div id="loginModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header card-header text-white">
+                                  <h5 class="modal-title">User info Required</h5>
+                                </div>
+                                <div class="modal-body">
+                                  <p>Please provide your First Name, Last Name, and User Name</p>
+                                </div>
+                                <div class="modal-footer">
+                                  <button id="loginModalClose" type="button" class="btn btn-secondary">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    <!-- End Modal -->
             </div>
         </div>
     </main>
@@ -68,7 +85,7 @@
             </div>
         </div>
     </footer>
-    <script src="assets/javascript/favorites.js"></script>
 
+    <script src="assets/javascript/javascript.js"></script>
 </body>
 </html>
