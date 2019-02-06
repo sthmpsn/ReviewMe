@@ -263,7 +263,7 @@ $(document).ready(function () {
     // Steve Code
     // Global Variable
     var currentUser;
-
+    
     // Even Triggers
     $(document).on("click", "#submit", function () {
         event.preventDefault();  //Prevent the Submit button from acting like a Submit button and do the following
@@ -275,13 +275,34 @@ $(document).ready(function () {
         currentUser = $usernameBox.val().trim();
         console.log("Stored Username: "+storedUser);
 
-        if (fname !== "" && lname !== "" && currentUser !== "") {
-            pushUserToDB();
-            navToApp();
-        }
-    else {
-        $("#loginModal").show();
-    }
+        // Statically define the alphabet to check for valid guess
+        var invalidChars = "~!@#$%^&*()_+=-`?/>.<,[]\"\\";
+        var invalidCharsArray = invalidChars.split("");
+        
+        if (fname!= "" && lname!=="" && currentUser!==""){
+            containspecial = false;
+            for (var i = 0; i < invalidCharsArray.length;i++){
+              if (currentUser.includes(invalidCharsArray[i])){
+                containspecial = true;
+                $("#loginModal").show();
+                break;
+              }
+              else{
+                containspecial = false;
+              }
+            }
+            // if there's no special characters in the whole currentuser string
+            if (containspecial === false){
+                pushUserToDB();
+                navToApp();
+            }
+          }
+          else{
+            $("#loginModal").show();
+          }
+          
+          
+         
 
         // START FUNCTION TO PUSH USER TO DB
         function pushUserToDB() {
