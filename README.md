@@ -38,3 +38,8 @@ https://sthmpsn.github.io/ReviewMe
 * Local Storage
 
 
+# Contributors
+* Steve Thompson
+* John Evans
+* Olivia Yang
+* Bill Fehlberg
