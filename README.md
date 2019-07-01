@@ -1,10 +1,10 @@
 # ReviewMe
-ReviewMe Client Side Applicaiton
+A Review site that provide users with the ability to take notes and rate their favorite beers and restaurants.
 
-# Purpose
-To provide users with the ability to take notes and rate their favorite beers and restaurants enabling them to analyze trends in their preferences
+## Deployed Application
+https://sthmpsn.github.io/ReviewMe
 
-# Instructions
+## Instructions
 * Navigate to the application link below
 * Enter your First, Last, and Username then click submit to log in (your username will be created and stored in the database)
 * Note your cool random Chuck Norris Avatar in the top right (click the image to get a better view)
@@ -16,12 +16,8 @@ To provide users with the ability to take notes and rate their favorite beers an
    * When in the Review Details you'll see a random flickr image along with your review details and a google maps location which shows the result of if you went to google maps and enter the review name in the search
    * Click "Close" when finished reviewing the details
 * If you want to sign in as a different user or logoff then click link in the top right that states "not <username>?" and this will take you back to the login page
-   
 
-# Application Link
-https://sthmpsn.github.io/ReviewMe
-
-# Technologies Used
+## Technologies
 * Adobe XD
 * HTML
 * CSS
@@ -37,9 +33,16 @@ https://sthmpsn.github.io/ReviewMe
    * Flickr Photo Search
 * Local Storage
 
+## Screenshots
+<img src="design/screenshots/01-login.jpg" width="250" alt="login">
+<img src="design/screenshots/02-landing.jpg" width="250" alt="landing">
+<img src="design/screenshots/03-createReview.jpg" width="250" alt="createReview">
+<img src="design/screenshots/04-reviewsList.jpg" width="250" alt="reviewsList">
+<img src="design/screenshots/05-reviewDetails.jpg" width="250" alt="reviewDetails">
 
-# Contributors
-* Steve Thompson
-* John Evans
-* Olivia Yang
+
+## Contributors
+* John Evans (evanjo03)
+* Olivia Yang (lazypanda21)
 * Bill Fehlberg
+* Steve Thompson (sthmpsn)
